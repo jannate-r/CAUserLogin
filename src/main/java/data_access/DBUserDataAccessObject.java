@@ -1,3 +1,4 @@
+
 package data_access;
 
 import java.io.IOException;
@@ -80,8 +81,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
             //                throw new RuntimeException(responseBody.getString("message"));
             return responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE;
-        }
-        catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -122,7 +122,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     @Override
     public void changePassword(User user) {
         final OkHttpClient client = new OkHttpClient().newBuilder()
-                                        .build();
+                .build();
 
         // POST METHOD
         final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
@@ -131,10 +131,10 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         requestBody.put(PASSWORD, user.getPassword());
         final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
         final Request request = new Request.Builder()
-                                    .url("http://vm003.teach.cs.toronto.edu:20112/user")
-                                    .method("PUT", body)
-                                    .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
-                                    .build();
+                .url("http://vm003.teach.cs.toronto.edu:20112/user")
+                .method("PUT", body)
+                .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
+                .build();
         try {
             final Response response = client.newCall(request).execute();
 
@@ -157,4 +157,8 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
         // No implementation needed for DB access
     }
 
+    @Override
+    public String getCurrentUser() {
+        return null;
+    }
 }
