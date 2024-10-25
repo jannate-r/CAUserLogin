@@ -81,7 +81,8 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
             //                throw new RuntimeException(responseBody.getString("message"));
             return responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE;
-        } catch (IOException | JSONException ex) {
+        }
+        catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -161,4 +162,5 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     public String getCurrentUser() {
         return null;
     }
+
 }
